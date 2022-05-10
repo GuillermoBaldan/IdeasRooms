@@ -4,7 +4,7 @@ const vote = require("../models/vote");
 const Idea = require("../models/idea");
 const { isAuthenticated } = require("../helpers/auth");
 
-router.get("/idea/add", isAuthenticated, (req, res) => {
+router.get("/ideas/add", isAuthenticated, (req, res) => {
   res.render("ideas/new-idea");
 });
 
@@ -26,14 +26,15 @@ router.post("/ideas/new-idea", isAuthenticated, async (req, res) => {
   } else {
     const newIdea = new Idea({ title, description });
     newIdea.user = req.user._id;
+    newIdea.manager = req.user._id;
     await newIdea.save();
     req.flash("success_msg", "Idea Added Successfully");
-    res.redirect("/all-ideas");
+    res.redirect("/ideas");
   }
 });
 
 router.get("/ideas", isAuthenticated, async (req, res) => {
-  const ideas = await Idea.find({ user: req.user._id })
+  const ideas = await Idea.find({ manager: req.user._id })
     .sort({ date: "desc" })
     .lean();
   res.render("ideas/all-ideas", { ideas });
