@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
+const vote = require("../models/vote");
 const Idea = require("../models/idea");
 const { isAuthenticated } = require("../helpers/auth");
 
@@ -7,7 +8,7 @@ router.get("/idea/add", isAuthenticated, (req, res) => {
   res.render("ideas/new-idea");
 });
 
-router.post("/notes/new-note", isAuthenticated, async (req, res) => {
+router.post("/ideas/new-idea", isAuthenticated, async (req, res) => {
   const { title, description } = req.body;
   const errors = [];
   if (!title) {

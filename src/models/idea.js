@@ -1,5 +1,7 @@
-const mongoose = require("moongose");
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const userSchema = mongoose.model("user");
+const voteSchema = mongoose.model("vote");
 
 const IdeaSchema = new Schema({
   title: {
@@ -18,8 +20,8 @@ const IdeaSchema = new Schema({
     type: String,
     required: true,
   },
-  collaborators: [userSchema],
-  votes: [voteSchema],
+  collaborators: [{ type: Schema.ObjectId, ref: "user" }],
+  votes: [{ type: Schema.ObjectId, ref: "vote" }],
 });
 
-module.exports = mongoose.model("Idea", IdeaSchema);
+module.exports = mongoose.model("idea", IdeaSchema);
