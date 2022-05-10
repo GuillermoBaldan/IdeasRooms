@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require("../models/User");
+const User = require("../models/user");
 const passport = require("passport");
 
 router.get("/users/signin", (req, res) => {
@@ -9,7 +9,7 @@ router.get("/users/signin", (req, res) => {
 router.post(
   "/users/signin",
   passport.authenticate("local", {
-    successRedirect: "/notes",
+    successRedirect: "/ideas",
     failureRedirect: "/users/signin",
     failureFlash: true,
     successFlash: "Welcome",
