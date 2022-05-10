@@ -1,0 +1,25 @@
+{
+  "name": "ideasrooms",
+  "version": "1.0.0",
+  "description": "an educational project about a based ideas social network",
+  "main": "index.js",
+  "scripts": {
+    "test": "dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuillermoBaldan/IdeasRooms.git"
+  },
+  "keywords": [
+    "educational",
+    "project",
+    "collaboration",
+    "ideas"
+  ],
+  "author": "Guillermo Baldán López",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/GuillermoBaldan/IdeasRooms/issues"
+  },
+  "homepage": "https://github.com/GuillermoBaldan/IdeasRooms#readme"
+}

@@ -18,6 +18,8 @@ const IdeaSchema = new Schema({
     type: String,
     required: true,
   },
+  collaborators: [userSchema],
+  votes: [voteSchema],
 });
 
 module.exports = mongoose.model("Idea", IdeaSchema);
