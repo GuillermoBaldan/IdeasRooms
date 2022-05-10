@@ -52,6 +52,13 @@ router.put("/ideas/edit-idea/:id", isAuthenticated, async (req, res) => {
   res.redirect("/ideas");
 });
 
+router.put("/ideas/join/:id", isAuthenticated, async (req, res) => {
+  const { collaborators } = req.body;
+  await Idea.findByIdAndUpdate(req.params.id, { collaborators });
+  req.flash("success_msg", "Join into this idea successfully");
+  res.redirect("/ideas");
+});
+
 router.delete("/ideas/delete/:id", isAuthenticated, async (req, res) => {
   await Idea.findByIdAndDelete(req.params.id);
   req.flash("success_msg", "Idea deleted Successfully");

@@ -8,9 +8,25 @@
           >
             {{title}}
           </h4>
+          <h5>
+            <span class="author-span">Author:</span>
+            <span class="author-name">{{author}}</span>
+          </h5>
           <p>
             {{description}}
           </p>
+          <p>
+            {{#each collaborators}}
+              <span class="badge badge-primary">{{name}}</span>
+            {{/each}}
+          </p>
+          <form action="/ideas/join/{{_id}}?_method=PUT" method="POST">
+            <input type="hidden" name="_method" value="PUT" />
+            <button
+              class="btn btn-primary btn-block btn-sm"
+              type="submit"
+            >Join</button>
+          </form>
         </div>
 
       </div>
@@ -21,7 +37,8 @@
         <div class="card-body">
           <h1>Hello {{user.name}}</h1>
           <p class="lead">There are not ideas yet.</p>
-          <a href="/ideas/add" class="btn btn-success btn-block">Share One!</a>
+          <a href="/ideas/add" class="btn btn-success btn-block">Be the first to
+            share one!</a>
         </div>
       </div>
     </div>

@@ -17,7 +17,8 @@ const IdeaSchema = new Schema({
     default: Date.now,
   },
   manager: {
-    type: String,
+    type: Schema.ObjectId,
+    ref: "user",
     required: true,
   },
   collaborators: [{ type: Schema.ObjectId, ref: "user" }],
