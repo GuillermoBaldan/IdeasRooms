@@ -52,9 +52,9 @@ router.put("/ideas/edit-idea/:id", isAuthenticated, async (req, res) => {
   res.redirect("/ideas");
 });
 
-router.delete("/idea/delete/:id", isAuthenticated, async (req, res) => {
-  await Note.findByIdAndDelete(req.params.id);
-  req.flash("success_msg", "Idea Deleted Successfully");
+router.delete("/ideas/delete/:id", isAuthenticated, async (req, res) => {
+  await Idea.findByIdAndDelete(req.params.id);
+  req.flash("success_msg", "Idea deleted Successfully");
   res.redirect("/ideas");
 });
 
