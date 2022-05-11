@@ -1,4 +1,4 @@
-const mongoose = require("moongose");
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const roomSchema = new Schema({
@@ -6,7 +6,7 @@ const roomSchema = new Schema({
     type: String, //idea id
     required: true,
   },
-  comments: [commentSchema],
+  comments: [{ type: Schema.ObjectId, ref: "comment" }],
 });
 
 module.exports = mongoose.model("room", roomSchema);

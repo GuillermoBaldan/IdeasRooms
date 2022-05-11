@@ -11,3 +11,20 @@
   margin: 0px;
   padding: 0px;
 }
+
+.form-control {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.logo {
+  width: 200px;
+}
+
+.card {
+  align-items: center;
+}
+
+.card-header {
+  width: 100%;
+}

@@ -1,10 +1,20 @@
 const router = require("express").Router();
 
-const Room = require("../models/Room");
+const Idea = require("../models/idea");
+const Rooms = require("../models/room");
 const { isAuthenticated } = require("../helpers/auth");
 
 router.get("/room/add", isAuthenticated, (req, res) => {
-  res.render("rooms/new-room");
+  res.render("rooms/idea-selection", { Idea });
+});
+
+router.get("/room/single", isAuthenticated, (req, res) => {
+  console.log("esto es una prueba single");
+});
+
+router.get("/ideas/idea4room/:id", isAuthenticated, async (req, res) => {
+  const idea = await Ideas.findById(req.params.id).lean();
+  res.render("rooms/idea4room", { idea });
 });
 
 router.post("/rooms/new-room", isAuthenticated, async (req, res) => {
@@ -41,8 +51,8 @@ router.get("/rooms/edit/:id", isAuthenticated, async (req, res) => {
 });
 //Me quedé aquí.
 router.put("/rooms/edit-room/:id", isAuthenticated, async (req, res) => {
-  const { title} = req.body;
-  await Room.findByIdAndUpdate(req.params.id, { title});
+  const { title } = req.body;
+  await Room.findByIdAndUpdate(req.params.id, { title });
   req.flash("success_msg", "Room Updated Successfully");
   res.redirect("/rooms");
 });
