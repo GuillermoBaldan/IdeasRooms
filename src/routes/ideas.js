@@ -53,8 +53,11 @@ router.put("/ideas/edit-idea/:id", isAuthenticated, async (req, res) => {
 });
 
 router.put("/ideas/join/:id", isAuthenticated, async (req, res) => {
-  const { collaborators } = req.body;
-  await Idea.findByIdAndUpdate(req.params.id, { collaborators });
+  let idea = await Idea.findById(req.params.id).lean();
+  idea.collaborators.push(req.user);
+  await Idea.findByIdAndUpdate(req.params.id, {
+    collaborators: idea.collaborators,
+  });
   req.flash("success_msg", "Join into this idea successfully");
   res.redirect("/ideas");
 });

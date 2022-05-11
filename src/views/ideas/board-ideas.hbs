@@ -15,9 +15,9 @@
           <p>
             {{description}}
           </p>
-          <p>
-            {{#each collaborators}}
-              <span class="badge badge-primary">{{name}}</span>
+          <p><span class="collaborators">Colaborators:</span>
+            {{#each collaborators_name}}
+              <span class="collaborator badge badge-primary">{{this}}</span>
             {{/each}}
           </p>
           <form action="/ideas/join/{{_id}}?_method=PUT" method="POST">

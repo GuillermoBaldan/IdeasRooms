@@ -23,12 +23,21 @@ function constructed(ideas, users) {
   return ideas;
 }
 
+function getCollaboratorsName(idea, users) {
+  let collaborators_name = [];
+  idea.collaborators.forEach((collaborator) => {
+    collaborators_name.push(addName(users, collaborator.valueOf()));
+  });
+  return collaborators_name;
+}
 //rutas
 router.get("/", async (req, res) => {
   let ideas = await Idea.find({}).sort({ date: "desc" }).lean();
   let users = await User.find({}).lean();
   ideas = constructed(ideas, users);
-
+  ideas.forEach((idea) => {
+    idea.collaborators_name = getCollaboratorsName(idea, users);
+  });
   res.render("index", { ideas });
 });
 
